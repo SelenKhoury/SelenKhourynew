@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText editTextPassword , editTextEmailAddress;
@@ -31,9 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
         preferences = getSharedPreferences("Userinfo", 0);
-
     }
-
     public void register (View view){
         String input_mail = editTextEmailAddress.getText().toString();
         String input_password = editTextPassword.getText().toString();
@@ -46,12 +43,11 @@ public class RegisterActivity extends AppCompatActivity {
 
             editor.apply();
             Toast.makeText(this, "user registered!", Toast.LENGTH_LONG).show();
-            Intent intent_main = new Intent(this, MainActivity.class);
-            startActivity(intent_main);
+            Intent intent_LOG = new Intent(this, LogInActivity.class);
+            startActivity(intent_LOG);
         }else{
             Toast.makeText(this,"Empty values,please insert !",Toast.LENGTH_LONG).show();
         }
-
     }
     public void cancel (View view){
         Intent intent_main = new Intent(this, LogInActivity.class);

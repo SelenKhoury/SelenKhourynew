@@ -33,17 +33,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
-      //  editTextPassword = findViewById(R.id.editTextPassword);
-       // editTextPersonName = findViewById(R.id.editTextPersonName);
-      //  buttonLogin = findViewById(R.id.buttonLogin);
-      //  buttonRegister = findViewById(R.id.buttonRegister);
-      //  textView = findViewById(R.id.textView);
-       // textView_signup = findViewById(R.id.textView_signup);
+      /*  editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPersonName = findViewById(R.id.editTextPersonName);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonRegister = findViewById(R.id.buttonRegister);
+        textView = findViewById(R.id.textView);
+        textView_signup = findViewById(R.id.textView_signup); */
+
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
-
-    }// OnCreate
+    }
+    // OnCreate
 
     //load option menu from an activity (linking xml option menu with the java activity)
     /*
@@ -143,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-
     public void Login(View view) {
         /*if (editTextEmailAddress.getText().toString().equals(""))
             Toast.makeText(this,"Empty Email",Toast.LENGTH_LONG).show();
@@ -155,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         }
-
-
         // this line gets the registered email and password , in case no user was registered empty string is returned
         String input_mail =editTextEmailAddress.getText().toString();
         String input_password = editTextPassword.getText().toString();
@@ -169,10 +167,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i_mail);}
         else {
             Toast.makeText(this,"ERROR! Email or Password not correct",Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
+        }}
     @SuppressLint("CommitPrefEdits")*/
     /*public void Register(View view) {
 
@@ -187,5 +182,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
     }*/
-
 }

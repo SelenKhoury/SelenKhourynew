@@ -36,8 +36,7 @@ public class LogInActivity extends AppCompatActivity {
         button_to_sign = findViewById(R.id.button_to_sign);
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
-
-    }
+         }
 
     public void Login(View view) {
         if (editTextNumberPassword_login.getText().toString().equals(""))
@@ -46,19 +45,20 @@ public class LogInActivity extends AppCompatActivity {
             Toast.makeText(this, "Empty User Name", Toast.LENGTH_LONG).show();
         else { /* Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);*/
-        // this line gets the registered name and password , in case no user was registered empty string is returned
-        String input_Name = editTextTextPersonName_login.getText().toString();
-        String input_password = editTextNumberPassword_login.getText().toString();
+            // this line gets the registered name and password , in case no user was registered empty string is returned
+            String input_Name = editTextTextPersonName_login.getText().toString();
+            String input_password = editTextNumberPassword_login.getText().toString();
 
-        String registeredName = preferences.getString("username", "");
-        String registeredPassword = preferences.getString("password", "");
+            String registeredName = preferences.getString("username", "");
+            String registeredPassword = preferences.getString("password", "");
 
-        if (input_Name.equals(registeredName) && input_password.equals(registeredPassword)) {
-            Intent i_Name = new Intent(this, HomeActivity.class);
-            startActivity(i_Name);}
-        else {
-            Toast.makeText(this, "ERROR! Username or Password not correct", Toast.LENGTH_SHORT).show();
-        }}
+            if (input_Name.equals(registeredName) && input_password.equals(registeredPassword)) {
+                Intent i_Name = new Intent(this, HomeActivity.class);
+                startActivity(i_Name);
+            } else {
+                Toast.makeText(this, "ERROR! Username or Password not correct", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -74,9 +74,5 @@ public class LogInActivity extends AppCompatActivity {
 
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
-    }
-
-
-
-
+        }
     }
