@@ -21,9 +21,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextEmailAddress, editTextPassword;// editTextPersonName;
-  //  private Button buttonLogin, buttonRegister;
-    private TextView textView , textView_signup;
-
     private final String valid_mail = "admin";
     private final String valid_password = "1";
 
@@ -174,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+/*
     @SuppressLint("CommitPrefEdits")
     public void Register(View view) {
 
@@ -188,5 +185,5 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
-    }
+    }*/
 }

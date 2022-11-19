@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     public void cancel (View view){
-        Intent intent_main = new Intent(this, MainActivity.class);
+        Intent intent_main = new Intent(this, LogInActivity.class);
         startActivity(intent_main);
 
     }
