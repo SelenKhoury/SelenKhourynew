@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private EditText editTextTextPersonName_login, editTextNumberPassword_login,editTextPassword,editTextPersonName;
+    private EditText editTextTextPersonName_login, editTextNumberPassword_login, editTextPassword, editTextPersonName;
     private TextView textView2, textview3;
     private Button buttonLogIn, button_to_sign;
     private final String valid_Name = "admin";
@@ -40,56 +40,46 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void Login(View view) {
-        if (editTextTextPersonName_login.getText().toString().equals(""))
-            Toast.makeText(this,"Empty User Name",Toast.LENGTH_LONG).show();
-        else if (editTextNumberPassword_login.getText().toString().equals(""))
-            Toast.makeText(this,"Empty Password",Toast.LENGTH_LONG).show();
+        if (editTextNumberPassword_login.getText().toString().equals(""))
+            Toast.makeText(this, "Empty Password", Toast.LENGTH_LONG).show();
+        else if (editTextTextPersonName_login.getText().toString().equals(""))
+            Toast.makeText(this, "Empty User Name", Toast.LENGTH_LONG).show();
         else {
             Intent i = new Intent(this, HomeActivity.class);
-            startActivity(i);}
-        //
-        String input_User = editTextTextPersonName_login.getText().toString();
-        String input_User_password = editTextNumberPassword_login.getText().toString();
-        if (input_User.length() > 0) {
-            Toast.makeText(this, "user logged in !", Toast.LENGTH_LONG).show();
-            Intent intent_main = new Intent(this, MainActivity.class);
-            startActivity(intent_main);
-        } else {
-            Toast.makeText(this, "Empty values,please insert !", Toast.LENGTH_LONG).show();
+            startActivity(i);
         }
+
+        // this line gets the registered name and password , in case no user was registered empty string is returned
+        String input_Name = editTextTextPersonName_login.getText().toString();
+        String input_password = editTextNumberPassword_login.getText().toString();
+
+        String registeredName = preferences.getString("username", "");
+        String registeredPassword = preferences.getString("password", "");
+
+        if (input_Name.equals(registeredName) && input_password.equals(registeredPassword)) {
+            Intent i_Name = new Intent(this, HomeActivity.class);
+            startActivity(i_Name);
+        } else {
+            Toast.makeText(this, "ERROR! Username or Password not correct", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    public void Register(View view) {
+
+        String registeredName=editTextTextPersonName_login.getText().toString();
+        String registeredPassword = editTextNumberPassword_login.getText().toString();
+
+        // saves the email value in the preferences and commits the file
+
+        preferences.edit().putString("username", registeredName).commit();
+        preferences.edit().putString("password ",registeredPassword ).commit();
+
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
     }
 
-        // this line gets the registered email and password , in case no user was registered empty string is returned
-        String input_Name =editTextPersonName.getText().toString();
-        String input_password = editTextPassword.getText().toString();
-
-        String registeredName = preferences.getString("Name","");
-        String registeredPassword = preferences.getString("password","");
-/*
-        if (input_Name.equals(registeredName) && input_password.equals(registeredPassword)){
-            Intent i_Name = new Intent(this,HomeActivity.class);
-            startActivity(i_Name);}
-        else {
-            Toast.makeText(this,"ERROR! Email or Password not correct",Toast.LENGTH_SHORT).show();
-        }
-*/
 
 
-    @SuppressLint("CommitPrefEdits")
-        public void Register(View view) {
 
-            String registeredName =editTextPersonName.getText().toString();
-            String registeredPassword = editTextPassword.getText().toString();
-
-            // saves the email value in the preferences and commits the file
-
-            preferences.edit().putString("User Name", registeredName).commit();
-            preferences.edit().putString("password ",registeredPassword ).commit();
-
-            Intent i_register = new Intent(this, RegisterActivity.class);
-            startActivity(i_register);
-        }
-
-}
+    }
