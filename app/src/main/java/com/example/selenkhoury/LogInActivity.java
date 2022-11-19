@@ -51,7 +51,7 @@ public class LogInActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-    public void login( ) {
+   /* public void login( ) {
         String input_User = editTextTextPersonName_login.getText().toString();
         String input_User_pass = editTextNumberPassword_login.getText().toString();
         if (input_User.length() > 0) {
@@ -63,7 +63,7 @@ public class LogInActivity extends AppCompatActivity {
         }
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
-    }
+    }*/
 
         // this line gets the registered email and password , in case no user was registered empty string is returned
         String input_mail =editTextEmailAddress.getText().toString();
@@ -96,4 +96,4 @@ public class LogInActivity extends AppCompatActivity {
             startActivity(i_register);
         }
 
-}}
+}
