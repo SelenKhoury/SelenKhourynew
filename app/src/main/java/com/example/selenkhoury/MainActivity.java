@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         //alertdialog - name of the object
     }
 
+    /*
 
     public void Login(View view) {
         /*if (editTextEmailAddress.getText().toString().equals(""))
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         }
-    */
+
 
         // this line gets the registered email and password , in case no user was registered empty string is returned
         String input_mail =editTextEmailAddress.getText().toString();
@@ -171,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-/*
-    @SuppressLint("CommitPrefEdits")
-    public void Register(View view) {
+
+    @SuppressLint("CommitPrefEdits")*/
+    /*public void Register(View view) {
 
         String registeredMail =editTextEmailAddress.getText().toString();
         String registeredPassword = editTextPassword.getText().toString();
@@ -186,4 +187,5 @@ public class MainActivity extends AppCompatActivity {
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
     }*/
+
 }

@@ -10,13 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private EditText editTextTextPersonName_login, editTextNumberPassword_login;
+    private EditText editTextTextPersonName_login, editTextNumberPassword_login,editTextEmailAddress,editTextPassword,editTextPersonName;
     private TextView textView2, textview3;
     private Button buttonLogIn, button_to_sign;
+    private final String valid_mail = "admin";
+    private final String valid_password = "1";
+
+    SharedPreferences preferences;
+
+    Button buttonLogin, buttonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,8 @@ public class LogInActivity extends AppCompatActivity {
         textview3 = findViewById(R.id.textView3);
         buttonLogIn = findViewById(R.id.buttonLogIn);
         button_to_sign = findViewById(R.id.button_to_sign);
+        // creates a preferences file ,
+        preferences = getSharedPreferences("Userinfo", 0);
 
     }
 
@@ -42,8 +51,7 @@ public class LogInActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-        /*
-    public void login(View view) {
+    public void login( ) {
         String input_User = editTextTextPersonName_login.getText().toString();
         String input_User_pass = editTextNumberPassword_login.getText().toString();
         if (input_User.length() > 0) {
@@ -55,6 +63,37 @@ public class LogInActivity extends AppCompatActivity {
         }
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
-    }*/
+    }
+
+        // this line gets the registered email and password , in case no user was registered empty string is returned
+        String input_mail =editTextEmailAddress.getText().toString();
+        String input_password = editTextPassword.getText().toString();
+
+        String registeredMail = preferences.getString("email","");
+        String registeredPassword = preferences.getString("password","");
+
+        if (input_mail.equals(registeredMail) && input_password.equals(registeredPassword)){
+            Intent i_mail = new Intent(this,HomeActivity.class);
+            startActivity(i_mail);}
+        else {
+            Toast.makeText(this,"ERROR! Email or Password not correct",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @SuppressLint("CommitPrefEdits")
+        public void Register(View view) {
+
+            String registeredMail =editTextEmailAddress.getText().toString();
+            String registeredPassword = editTextPassword.getText().toString();
+
+            // saves the email value in the preferences and commits the file
+
+            preferences.edit().putString("email", registeredMail).commit();
+            preferences.edit().putString("password ",registeredPassword ).commit();
+
+            Intent i_register = new Intent(this, RegisterActivity.class);
+            startActivity(i_register);
+        }
 
 }}
