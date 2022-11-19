@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-
+        /*
     public void login(View view) {
         String input_User = editTextTextPersonName_login.getText().toString();
         String input_User_pass = editTextNumberPassword_login.getText().toString();
@@ -55,6 +55,6 @@ public class LogInActivity extends AppCompatActivity {
         }
         Intent i_register = new Intent(this, RegisterActivity.class);
         startActivity(i_register);
-    }
+    }*/
 
-}
+}}
