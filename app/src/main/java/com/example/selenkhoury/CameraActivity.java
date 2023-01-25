@@ -276,6 +276,11 @@ public class CameraActivity extends AppCompatActivity {
         // check if the external storage is available for read and write by calling
         // Environment.getExternalStorageState() method. if the returned state is MEDIA_MOUNTED,
         // then you can read and write files. so , return true in that case , otherwise, false.
+            String extStorageState = Environment.getExternalStorageState();
+            if (extStorageState.equals(Environment.MEDIA_MOUNTED)){
+                return true;
+            }
+            return false;
         }
 }
 
