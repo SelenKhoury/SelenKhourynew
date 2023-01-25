@@ -2,9 +2,12 @@ package com.example.selenkhoury;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -15,9 +18,11 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.TotalCaptureResult;
+import android.hardware.camera2.params.StreamConfigurationMap;
 import android.icu.util.Output;
 import android.media.Image;
 import android.media.ImageReader;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -39,6 +44,7 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -272,17 +278,78 @@ public class CameraActivity extends AppCompatActivity {
         return false;
         }
 
-        private boolean isExternalStorageAvailableForRW(){
-        // check if the external storage is available for read and write by calling
-        // Environment.getExternalStorageState() method. if the returned state is MEDIA_MOUNTED,
-        // then you can read and write files. so , return true in that case , otherwise, false.
+        private boolean isExternalStorageAvailableForRW() {
+            // check if the external storage is available for read and write by calling
+            // Environment.getExternalStorageState() method. if the returned state is MEDIA_MOUNTED,
+            // then you can read and write files. so , return true in that case , otherwise, false.
             String extStorageState = Environment.getExternalStorageState();
-            if (extStorageState.equals(Environment.MEDIA_MOUNTED)){
+            if (extStorageState.equals(Environment.MEDIA_MOUNTED)) {
                 return true;
             }
             return false;
         }
+    private boolean isStoragePermissionGranted(){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            // permission is granted
+            return true;
+        }else{
+            //permission is revoked
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            return false;
+        }
+    }else {
+        // Permission is outomatically granted on sdk<23 upon installation
+        return true;
+    }
+    }
+
+    protected void createCameraPreview()
+    try {
+        SurfaceTexture texture = textureView.getSurfaceTexture();
+        assert texture != null;
+        texture.setDefaultBufferSize(imageDimension.getWidth(),imageDimension.getHeight());
+        Surface surface = new Surface(texture);
+        captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+        captureRequestBuilder.addTarget(surface);
+        cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
+            @Override
+            public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                // The camera is already closed
+                if (null == cameraDevice) {
+                    return;
+                }
+                // When the session is ready , we start displaying the preview
+                cameraCaptureSession = cameraCaptureSession;
+                updatePreview();
+            }
+
+            @Override
+            public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+                Toast.makeText(CameraActivity.this, "Configuration change", Toast.LENGTH_SHORT).show();
+            }
+        },null);
+    } catch(CameraAccessException e){
+        e.printStackTrace();
+        }
+    }
+
+    private void openCamera() {
+    CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+    Log.e(TAG,"is camera open");
+    try{
+        cameraId = manager.getCameraIdList()[0];
+        CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
+        StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
+        assert map != null;
+        imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
+        // Add perimission for camera and let user grant the peremission
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,))
+    }
+
+    }
 }
+
 
 
 
