@@ -344,11 +344,65 @@ public class CameraActivity extends AppCompatActivity {
         assert map != null;
         imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
         // Add perimission for camera and let user grant the peremission
-        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,))
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA_PERMISSION);
+            return;
+    }
+manager.openCamera(cameraId,stateCallback,null);
+    }catch (CameraAccessException e){
+        e.printStackTrace();
+    }
+    Log.e(TAG,"openCamera X");
+}
+protected void updatePreview(){
+    if (null == cameraDevice){
+        Log.e(TAG,"updatePreview erroer , return");
+    }
+    captureRequestBuilder.set(CaptureRequest.CONTROL_MODE,CameraMetadata.CONTROL_MODE_AUTO);
+    try {
+        cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
+    }catch (CameraAccessException e) {
+        e.printStackTrace();
+        }
     }
 
+    @Overrid
+    public void onRequestPermissionResult(int requestCode , @NonNull String[] permissions,@NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                // close the app
+                Toast.makeText(MainActivity.this, "Sorry ! , you can't use this app without granting permission", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+    @Override
+    protected void onResume(){
+    super.onResume();
+    Log.e(TAG,"onResume");
+    startBackgroundThread();
+    if (textureView.isAvailable()){
+        openCamera();
+    }else {
+        textureView.setSurfaceTextureListener(textureListener);
+      }
+    }
+
+    @Override
+    protected void onPause() {
+        Log.e(TAG, "onPause");
+        // closeCamera();
+        stopBackgroundThread();
+        super.onPause();
     }
 }
+
+
+
+
+
+
 
 
 
