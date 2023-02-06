@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.cameraapp;
+package com.example.selenkhoury;
 
 import static android.os.Build.VERSION_CODES.R;
 
@@ -41,8 +41,7 @@ public class ViewPagerAdapter extends PagerAdapter{
         return imagePaths.size();
     }
 
-    @Override
-    public booleanisViewFromObject(@NonNull View view, @NonNull Object object){
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object){
         return view == object;
     }
     @NonNull

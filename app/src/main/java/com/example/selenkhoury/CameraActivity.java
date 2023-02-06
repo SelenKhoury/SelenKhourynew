@@ -188,7 +188,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
 
                 ImageReader reader = ImageReader.newInstance(width,height,ImageFormat.JPEG,1);
-                List<Surface> outputSurfaces = new ArrayList<~>(2);
+                List<Surface> outputSurfaces = new ArrayList<>(2);
                 outputSurfaces.add(reader.getSurface());
                 outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
                 final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
@@ -304,7 +304,7 @@ public class CameraActivity extends AppCompatActivity {
     }
     }
 
-    protected void createCameraPreview()
+    protected void createCameraPreview(){
     try {
         SurfaceTexture texture = textureView.getSurfaceTexture();
         assert texture != null;
