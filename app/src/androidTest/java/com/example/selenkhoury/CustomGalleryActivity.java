@@ -1,4 +1,4 @@
-package com.sandipbhattacharya.cameraapp;
+package com.example.selenkhoury;
 
 import android.os.Bundle;
 
