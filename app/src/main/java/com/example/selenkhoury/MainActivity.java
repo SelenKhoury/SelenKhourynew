@@ -1,5 +1,7 @@
 package com.example.selenkhoury;
 
+import static android.app.PendingIntent.readPendingIntentOrNullFromParcel;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,10 +45,16 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         textView = findViewById(R.id.textView);
         textView_signup = findViewById(R.id.textView_signup); */
+            Intent notification = new Intent(this,Receiver.class);
+            PendingIntent PendingIntent = android.app.PendingIntent.getBroadcast(this,1,notification, android.app.PendingIntent.FLAG_UPDATE_CURRENT);
 
+            AlarmManager alarmManager = (AlarmManager)
+                    this.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000, readPendingIntentOrNullFromParcel());
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
     }
+    
     // OnCreate
 
     //load option menu from an activity (linking xml option menu with the java activity)
@@ -146,20 +154,8 @@ public class MainActivity extends AppCompatActivity {
         //alertdialog - name of the object
     }
 
-    @Override
-    protected void onCreate (Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Intent notification = new Intent(this,Receiver.class);
-        PendingIntent PendingIntent = android.app.PendingIntent.getBroadcast(this,1,notification, android.app.PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager)
-                this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000, android.app.PendingIntent.readPendingIntentOrNullFromParcel());
+    private class Receiver {
     }
-
-
 
     /*
     public void Login(View view) {
