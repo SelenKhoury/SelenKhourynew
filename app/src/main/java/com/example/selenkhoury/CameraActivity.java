@@ -1,14 +1,20 @@
 package com.example.selenkhoury;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.PagerAdapter;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -30,10 +36,14 @@ import android.os.HandlerThread;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -47,6 +57,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -396,7 +407,63 @@ protected void updatePreview(){
         stopBackgroundThread();
         super.onPause();
     }
-}
+
+        public static class ViewPagerAdapter extends PagerAdapter {
+            // Context object
+            Context context;
+
+            // Array of images
+            ArrayList<String> imagePaths = new ArrayList<>();
+
+            // Layout Inflater
+            LayoutInflater mLayoutInflater;
+
+            // ViewPager Constructor
+            public ViewPagerAdapter(Context context, ArrayList<String> imagePaths){
+                this.context = context;
+                this.imagePaths = imagePaths;
+                mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            }
+
+            @Override
+            public  int getCount(){
+                // return the number of images
+                return imagePaths.size();
+            }
+
+            public boolean isViewFromObject(@NonNull View view, @NonNull Object object){
+                return view == object;
+            }
+            @NonNull
+            @Override
+            public Object instantiateItem(@NonNull ViewGroup container, final int position){
+                // inflating the item.xml
+                View itemView = mLayoutInflater.inflate(R.layout.galleryitem, container, false);
+
+                // referencing the image view from the item.xml file
+                ImageView imageView = itemView.findViewById(R.id.imageViewCamera);
+
+                // setting the image in the imageview
+                Bitmap myBitmap = BitmapFactory.decodeFile(imagePaths.get(position));
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap,0,0,myBitmap.getWidth(),myBitmap.getHeight(),matrix,true);
+                imageView.setImageBitmap(rotatedBitmap);
+
+                // Adding the view
+                Objects.requireNonNull(container).addView(itemView);
+                return itemView;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int positin , Object object){
+                container.removeView((LinearLayout) object);
+            }
+        }
+
+
+    }
+
 
 
 
