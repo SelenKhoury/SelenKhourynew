@@ -17,7 +17,7 @@ public class CustomGalleryActivity extends AppCompatActivity {
     // Creating object of viewPager
     ViewPager mViewPager;
     // Creating Object of ViewPagerAdapter
-    com.sandipbhattacharya.cameraapp.ViewPagerAdapter mViewPagerAdapter;
+    com.example.selenkhoury.CameraActivity.ViewPagerAdapter mViewPagerAdapter;
 
     @Override
     public void onCreate(@NonNull Bundle savedInstanceState){
@@ -25,9 +25,9 @@ public class CustomGalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         getFromSdcard();
         // Initializing the ViewPager Object
-        mViewPager = findViewById(R.Id.viewPagerCamera);
+        mViewPager = findViewById(R.id.viewPagerCamera);
         // Initializing the ViewPagerAdapter
-        mViewPagerAdapter = new com.sandipbhattacharya.cameraapp.ViewPagerAdapter(this,f);
+        mViewPagerAdapter = new com.example.selenkhoury.CameraActivity().ViewPagerAdapter(this,f);
         // Adding the Adapter to the ViewPager
         mViewPager.setAdapter(mViewPagerAdapter);
     }

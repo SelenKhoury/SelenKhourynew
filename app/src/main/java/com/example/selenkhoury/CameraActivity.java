@@ -366,7 +366,7 @@ protected void updatePreview(){
         }
     }
 
-    @Overrid
+    @Override
     public void onRequestPermissionResult(int requestCode , @NonNull String[] permissions,@NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
