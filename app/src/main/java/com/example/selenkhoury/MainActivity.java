@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         textView = findViewById(R.id.textView);
         textView_signup = findViewById(R.id.textView_signup); */
-            Intent notification = new Intent(this,Receiver.class);
-            PendingIntent PendingIntent = android.app.PendingIntent.getBroadcast(this,1,notification, android.app.PendingIntent.FLAG_UPDATE_CURRENT);
 
-            AlarmManager alarmManager = (AlarmManager)
-                    this.getSystemService(Context.ALARM_SERVICE);
-        android.app.PendingIntent pendingIntent = null;
-        alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000,pendingIntent);
+        Intent notification = new Intent(this, Receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, notification, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 3000, pendingIntent);
+
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
     }
@@ -153,9 +153,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = dialog.create();
         alertDialog.show();
         //alertdialog - name of the object
-    }
-
-    private class Receiver {
     }
 
     /*
