@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
             AlarmManager alarmManager = (AlarmManager)
                     this.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000, readPendingIntentOrNullFromParcel());
+        android.app.PendingIntent pendingIntent = null;
+        alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000,pendingIntent);
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
     }
-    
+
     // OnCreate
 
     //load option menu from an activity (linking xml option menu with the java activity)

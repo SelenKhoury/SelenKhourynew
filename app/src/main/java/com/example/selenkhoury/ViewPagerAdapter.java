@@ -48,7 +48,7 @@ public class ViewPagerAdapter extends PagerAdapter{
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position){
         // inflating the item.xml
-        View itemView = mLayoutInflater.inflate(R.layout.galleryitem , container,false);
+        View itemView = mLayoutInflater.inflate(R.galleryitem, container,false);
 
         // referencing the image view from the item.xml file
         ImageView imageView = itemView.findViewById(R.id.imageViewCamera);

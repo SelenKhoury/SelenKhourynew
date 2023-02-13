@@ -26,6 +26,7 @@ public class MyIntentService extends IntentService{
         Notification.Builder nBuilder = new Notification.Builder(this);
         nBuilder.setContentTitle("WELCOME TO MY APP");
         nBuilder.setContentText("WELCOME TO MY APP");
+        nBuilder.setSmallIcon(R.drawable.ic_baseline_warning_24);
 
         //what to do when the notification is clicked
         Intent intent1 = new Intent(this, MainActivity.class);
