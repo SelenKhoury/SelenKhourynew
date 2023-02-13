@@ -5,6 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -142,6 +145,21 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
         //alertdialog - name of the object
     }
+
+    @Override
+    protected void onCreate (Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Intent notification = new Intent(this,Receiver.class);
+        PendingIntent PendingIntent = android.app.PendingIntent.getBroadcast(this,1,notification, android.app.PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)
+                this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC,System.currentTimeMillis(),3000, android.app.PendingIntent.readPendingIntentOrNullFromParcel());
+    }
+
+
 
     /*
     public void Login(View view) {
