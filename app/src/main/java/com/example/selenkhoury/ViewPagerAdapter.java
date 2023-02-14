@@ -1,6 +1,6 @@
 package com.example.selenkhoury;
 
-import static android.os.Build.VERSION_CODES.R;
+//import static android.os.Build.VERSION_CODES.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

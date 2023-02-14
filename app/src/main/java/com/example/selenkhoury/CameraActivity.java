@@ -1,6 +1,6 @@
 package com.example.selenkhoury;
 
-import static android.os.Build.VERSION_CODES.R;
+//import static android.os.Build.VERSION_CODES.R;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -118,7 +118,7 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
             //Open your camera here
-            operCamera();
+            openCamera();
         }
 
         @Override
@@ -263,7 +263,7 @@ public class CameraActivity extends AppCompatActivity {
                 };
                 cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
                     @Override
-                    public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                    public void onConfigured(@NonNull CameraCaptureSession session) {
                         try{
                             session.capture(captureBuilder.build(),captureListener,mBackgroundHandler);}
                         catch (CameraAccessException e){
@@ -356,7 +356,7 @@ public class CameraActivity extends AppCompatActivity {
         imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
         // Add perimission for camera and let user grant the peremission
         if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA_PERMISSION);
+            ActivityCompat.requestPermissions(CameraActivity.this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA_PERMISSION);
             return;
     }
 manager.openCamera(cameraId,stateCallback,null);
@@ -377,13 +377,13 @@ protected void updatePreview(){
         }
     }
 
-    @Override
+    //@Override
     public void onRequestPermissionResult(int requestCode , @NonNull String[] permissions,@NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 // close the app
-                Toast.makeText(MainActivity.this, "Sorry ! , you can't use this app without granting permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CameraActivity.this, "Sorry ! , you can't use this app without granting permission", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
