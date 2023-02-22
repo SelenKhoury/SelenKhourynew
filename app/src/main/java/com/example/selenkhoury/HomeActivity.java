@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         textView_Result = findViewById(R.id.textView_Result);
 
     }
+
     public void Plus(View view) {
         if (editTextNumber1.getText().toString().equals(""))
             Toast.makeText(this,"NO RESULT",Toast.LENGTH_LONG).show();

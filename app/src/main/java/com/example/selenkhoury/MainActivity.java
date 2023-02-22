@@ -94,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, HelpActivity.class);
                 startActivity(i);
                 break;}
+            case R.id.MyProfile_menu:{
+                Toast.makeText(MainActivity.this, "My Profile clicked", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, UserProfileActivity.class);
+                startActivity(i);
+                break;}
             case R.id.logout_menu:
                 Toast.makeText(MainActivity.this, "LogOut clicked", Toast.LENGTH_SHORT).show();
                 break;
