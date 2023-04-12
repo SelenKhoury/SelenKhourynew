@@ -111,14 +111,6 @@
                 android:hint="Change Profile Pic"
                 android:textSize="18sp" />
 
-            <View
-                android:id="@+id/divider_cam"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/Email"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/darker_gray" />
-
         </RelativeLayout>
     </LinearLayout>
 
