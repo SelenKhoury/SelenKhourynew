@@ -25,4 +25,5 @@
     <string name="todo5">TODO</string>
     <string name="channel_name" />
     <string name="channel_description" />
+    <string name="ccp">ccp</string>
 </resources>
