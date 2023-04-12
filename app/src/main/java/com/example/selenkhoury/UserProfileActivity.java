@@ -18,7 +18,7 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
     }
 /////// تزبيييططططط
-    public boolean onOptionsItemSelected(MenuItem item) {
+   /* public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.cpp: {
                 Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
@@ -28,9 +28,9 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         }
         return true;
-    }
+    }*/
 
-    public void changepp (@NonNull ImageView ImageView) {
+    public void changepp (@NonNull ImageView Imageview) {
         switch (ImageView.getBaseline()) {
             case R.id.cpp: {
                 Toast.makeText(UserProfileActivity.this, "Camera clicked", Toast.LENGTH_SHORT).show();
