@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,9 +17,11 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        ImageView imageView = (ImageView) findViewById(R.id.cpp);
+        imageView.setImageResource(R.drawable.ic_baseline_photo_camera_24);
     }
 /////// تزبيييططططط
-    public void changepicprofile (@NonNull ImageView imageView) {
+  /*  public void changepicp(@NonNull ImageView imageView) {
         switch (imageView.getId()) {
             case R.id.cpp: {
                 Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
@@ -29,6 +30,15 @@ public class UserProfileActivity extends AppCompatActivity {
                 break;
             }
         }
-    }
+    }*/
 
-}
+    public void changepicp(View view) {
+        switch (View.generateViewId()) {
+            case R.id.cpp: {
+                Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
+                Intent x = new Intent(this, CameraActivity.class);
+                startActivity(x);
+                break;
+            }
+    }
+}}
