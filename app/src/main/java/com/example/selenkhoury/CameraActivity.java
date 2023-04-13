@@ -97,7 +97,7 @@ public class CameraActivity extends AppCompatActivity {
         // set vector asset as source of ImageView
         ImageView imageView = findViewById(R.id.chpp);
         imageView.setImageResource(cpp);
-
+//
         textureView = findViewById(R.id.texture);
         if (textureView != null)
             textureView.setSurfaceTextureListener(textureListener);

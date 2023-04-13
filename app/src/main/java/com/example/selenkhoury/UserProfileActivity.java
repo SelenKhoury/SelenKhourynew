@@ -29,17 +29,4 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-
-/////// تزبيييططططط
-  /*  public void changepicp(@NonNull ImageView imageView) {
-        switch (imageView.getId()) {
-            case R.id.cpp: {
-                Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
-                Intent x = new Intent(this, CameraActivity.class);
-                startActivity(x);
-                break;
-            }
-        }
-    }*/
 }
