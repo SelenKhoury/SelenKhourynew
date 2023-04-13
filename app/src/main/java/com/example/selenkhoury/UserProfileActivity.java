@@ -11,15 +11,26 @@ import android.widget.Toast;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    ImageView cpp ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        ImageView imageView = (ImageView) findViewById(R.id.cpp);
-        imageView.setImageResource(R.drawable.ic_baseline_photo_camera_24);
+
+        ImageView imageView = findViewById(R.id.chpp);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle intent here
+                Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
+                Intent x = new Intent(UserProfileActivity.this,CameraActivity.class);
+                x.putExtra("cpp",R.drawable.ic_baseline_photo_camera_24);
+                startActivity(x);
+
+            }
+        });
     }
+
+
 /////// تزبيييططططط
   /*  public void changepicp(@NonNull ImageView imageView) {
         switch (imageView.getId()) {
@@ -31,14 +42,4 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         }
     }*/
-
-    public void changepicp(View view) {
-        switch (View.generateViewId()) {
-            case R.id.cpp: {
-                Toast.makeText(UserProfileActivity.this, "Camera clicked",Toast.LENGTH_SHORT).show();
-                Intent x = new Intent(this, CameraActivity.class);
-                startActivity(x);
-                break;
-            }
-    }
-}}
+}

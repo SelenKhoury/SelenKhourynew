@@ -93,20 +93,19 @@
                 android:id="@+id/divider_email"/>
 
             <ImageView
-                android:id="@+id/cpp"
+                android:id="@+id/chpp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/divider_email"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_photo_camera_24"
-                android:onClick="changepicp"/>
+                android:src="@drawable/ic_baseline_photo_camera_24" />
 
             <TextView
                 android:id="@+id/ccp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider_email"
-                android:layout_alignStart="@id/cpp"
+                android:layout_alignStart="@id/chpp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="20dp"
                 android:hint="Change Profile Pic"

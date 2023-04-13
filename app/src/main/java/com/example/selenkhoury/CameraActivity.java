@@ -92,6 +92,12 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        // Retrieve vector asset from intent
+        int cpp = getIntent().getIntExtra("cpp",0);
+        // set vector asset as source of ImageView
+        ImageView imageView = findViewById(R.id.chpp);
+        imageView.setImageResource(cpp);
+
         textureView = findViewById(R.id.texture);
         if (textureView != null)
             textureView.setSurfaceTextureListener(textureListener);
