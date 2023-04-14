@@ -24,7 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
     private EditText editTextEmailAddress, editTextPassword;// editTextPersonName;
     private final String valid_mail = "admin";
     private final String valid_password = "1";
@@ -158,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = dialog.create();
         alertDialog.show();
         //alertdialog - name of the object
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 
     /*

@@ -1,4 +1,4 @@
 package com.example.selenkhoury;
 
-public class RecycelerView {
+public class RecyclerView {
 }
