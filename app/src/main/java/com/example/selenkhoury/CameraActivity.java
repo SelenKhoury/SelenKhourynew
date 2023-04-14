@@ -76,7 +76,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private String cameraId;
     protected CameraDevice cameraDevice;
-    protected CameraCaptureSession cameraCaptureSession;
+    protected CameraCaptureSession cameraCaptureSessions;
     protected CaptureRequest.Builder captureRequestBuilder;
     private Size imageDimension;
     private ImageReader imageReader;
@@ -144,20 +144,20 @@ public class CameraActivity extends AppCompatActivity {
 
     private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
         @Override
-        public void onOpened(@NonNull CameraDevice cameraDevice) {
+        public void onOpened(@NonNull CameraDevice camera) {
             // this is called when the camera is open
             Log.e(TAG,"onOpened");
-            cameraDevice = cameraDevice;
+            cameraDevice = camera;
             createCameraPreview();
         }
 
         @Override
-        public void onDisconnected(@NonNull CameraDevice cameraDevice) {
+        public void onDisconnected(@NonNull CameraDevice camera) {
             cameraDevice.close();
         }
 
         @Override
-        public void onError(@NonNull CameraDevice cameraDevice, int i) {
+        public void onError(@NonNull CameraDevice camera, int i) {
             cameraDevice.close();
             cameraDevice = null;
         }
@@ -166,7 +166,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void startBackgroundThread(){
         mBackgroundThread = new HandlerThread("Camera Background");
         mBackgroundThread.start();
-        mBackgroundHandler = new Handler(mBackgroundHandler.getLooper());
+        mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
     }
 
     protected void stopBackgroundThread(){
@@ -320,7 +320,6 @@ public class CameraActivity extends AppCompatActivity {
         return true;
     }
     }
-
     protected void createCameraPreview(){
     try {
         SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -337,7 +336,7 @@ public class CameraActivity extends AppCompatActivity {
                     return;
                 }
                 // When the session is ready , we start displaying the preview
-                cameraCaptureSession = cameraCaptureSession;
+                cameraCaptureSessions = cameraCaptureSession;
                 updatePreview();
             }
 
@@ -360,7 +359,7 @@ public class CameraActivity extends AppCompatActivity {
         StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
         assert map != null;
         imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
-        // Add perimission for camera and let user grant the peremission
+        // Add permission for camera and let user grant the permission
         if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(CameraActivity.this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CAMERA_PERMISSION);
             return;
@@ -377,7 +376,7 @@ protected void updatePreview(){
     }
     captureRequestBuilder.set(CaptureRequest.CONTROL_MODE,CameraMetadata.CONTROL_MODE_AUTO);
     try {
-        cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
+        cameraCaptureSessions.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
     }catch (CameraAccessException e) {
         e.printStackTrace();
         }
@@ -412,24 +411,4 @@ protected void updatePreview(){
         // closeCamera();
         stopBackgroundThread();
         super.onPause();
-    }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    } }
