@@ -24,12 +24,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
     private EditText editTextEmailAddress, editTextPassword;// editTextPersonName;
     private final String valid_mail = "admin";
     private final String valid_password = "1";
 
     SharedPreferences preferences;
+
+    ArrayList<FoodTModel> foodTModels = new ArrayList<>();
+
+    int[] foodImages = {R.drawable.greek,R.drawable.chinese,R.drawable.france,R.drawable.israel,R.drawable.japanese,R.drawable.italy,R.drawable.mexico};
+
 
    /* EditText editTextEmailAddress, editTextPassword, editTextPersonName;
     Button buttonLogin, buttonRegister;
@@ -54,8 +61,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
+
+        setUpFoodModels();
+
+
     }
 
+    private void setUpFoodModels(){
+        String[] foodNames = getResources().getStringArray(R.array.food_full_txt);
+
+        for (int i = 0; i<foodNames.length;i++){
+            foodTModels.add(new FoodTModel(foodNames[i],foodImages[i]));
+        }
+
+    }
     // OnCreate
 
     //load option menu from an activity (linking xml option menu with the java activity)

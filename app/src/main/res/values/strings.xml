@@ -26,4 +26,14 @@
     <string name="channel_name" />
     <string name="channel_description" />
     <string name="ccp">ccp</string>
+    <string-array name="food_full_txt">
+        <item>Italian</item>
+        <item>Israeli </item>
+        <item>Greek</item>
+        <item>French</item>
+        <item>Mexican</item>
+        <item>Chinese</item>
+        <item>Japanese</item>
+    </string-array>
+
 </resources>
