@@ -5,6 +5,8 @@ import static android.app.PendingIntent.readPendingIntentOrNullFromParcel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,8 +65,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
 
-        setUpFoodModels();
 
+        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
+        setUpFoodModels();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, foodTModels);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
