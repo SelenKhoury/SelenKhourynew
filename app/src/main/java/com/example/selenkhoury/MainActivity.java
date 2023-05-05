@@ -1,30 +1,21 @@
 package com.example.selenkhoury;
 
-import static android.app.PendingIntent.readPendingIntentOrNullFromParcel;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,17 +24,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private EditText editTextEmailAddress, editTextPassword;// editTextPersonName;
     private final String valid_mail = "admin";
     private final String valid_password = "1";
+    private Button button_enter;
 
     SharedPreferences preferences;
 
     ArrayList<FoodTModel> foodTModels = new ArrayList<>();
 
-    int[] foodImages = {R.drawable.greek,R.drawable.chinese,R.drawable.france,R.drawable.israel,R.drawable.japanese,R.drawable.italy,R.drawable.mexico};
+    int[] foodImages = {R.drawable.greece,R.drawable.chinese,R.drawable.france,R.drawable.israel,R.drawable.japanese,R.drawable.italy,R.drawable.mexico};
 
-
-   /* EditText editTextEmailAddress, editTextPassword, editTextPersonName;
+    /* EditText editTextEmailAddress, editTextPassword, editTextPersonName;
     Button buttonLogin, buttonRegister;
   */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         buttonRegister = findViewById(R.id.buttonRegister);
         textView = findViewById(R.id.textView);
         textView_signup = findViewById(R.id.textView_signup); */
+        button_enter = findViewById(R.id.button_enter);
 
         Intent notification = new Intent(this, Receiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, notification, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -65,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         // creates a preferences file ,
         preferences = getSharedPreferences("Userinfo", 0);
 
-
+/*
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
         setUpFoodModels();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, foodTModels);
@@ -80,8 +73,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         for (int i = 0; i<foodNames.length;i++){
             foodTModels.add(new FoodTModel(foodNames[i],foodImages[i]));
         }
-
+*/
     }
+
     // OnCreate
 
     //load option menu from an activity (linking xml option menu with the java activity)
@@ -99,6 +93,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         getMenuInflater().inflate(R.menu.menu_example, menu);
         return true;
     }
+
+    @Override
+    public void entering(View view){
+        Toast.makeText(MainActivity.this, "main menu clicked", Toast.LENGTH_SHORT).show();
+        Intent intent_main = new Intent(this, MainActivity2.class);
+        startActivity(intent_main);
+    }
+
 
     //פונקציה שמגדירה את הקליקים
     //handle options menu click events
