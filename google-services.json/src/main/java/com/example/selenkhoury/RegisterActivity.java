@@ -10,16 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText editTextUserName, editTextPassword , editTextEmailAddress;
+    private EditText editTextPassword , editTextEmailAddress;
     private Button buttonCancel ,buttonRegister;
     private TextView textView;
-
-    private DatabaseReference mDatabase;
 
     SharedPreferences preferences;
 
@@ -27,9 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        editTextUserName = findViewById(R.id.editTextUserName);
         editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonCancel = findViewById(R.id.buttonCancel);
@@ -37,11 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
         preferences = getSharedPreferences("Userinfo", 0);
-    }
-    public void writeNewUser() {
-        User user = new User(editTextUserName.getText().toString(),editTextEmailAddress.getText().toString(),editTextPassword.getText().toString());
-
-        mDatabase.child("users").child(user.getUsername()).setValue(user);
     }
     public void register (View view){
         String input_mail = editTextEmailAddress.getText().toString();
@@ -66,6 +54,5 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent_main);
 
     }
-
 
 }
