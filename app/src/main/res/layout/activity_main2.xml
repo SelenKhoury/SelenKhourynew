@@ -25,20 +25,23 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+
+            <ImageButton
+                android:id="@+id/imageButton0"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/italy"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp"/>
+                android:src="@drawable/italy" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="1.11in"
-                android:textSize="25dp"
+                android:text="Italian food"
                 android:textColor="@color/black"
-                android:text="Italian food"/>
+                android:textSize="25dp" />
+
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -47,13 +50,14 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+
+            <ImageButton
+                android:id="@+id/imageButton1"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/israel"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp"/>
+                android:src="@drawable/israel" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -69,13 +73,13 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+            <ImageButton
+                android:id="@+id/imageButton2"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/greece"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp"/>
+                android:src="@drawable/greece" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -91,13 +95,13 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+            <ImageButton
+                android:id="@+id/imageButton3"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/france"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp"/>
+                android:src="@drawable/france" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -113,14 +117,13 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+            <ImageButton
+                android:id="@+id/imageButton4"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/japanese"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp">
-            </ImageView>
+                android:src="@drawable/japanese" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -137,22 +140,21 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+            <ImageButton
+                android:id="@+id/imageButton5"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/chinese"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp">
-              </ImageView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="1.11in"
-                android:textSize="25dp"
-                android:textColor="@color/black"
-                android:text="Chinese food">
-            </TextView>
+                android:src="@drawable/chinese" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="1.11in"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:text="Chinese food">
+        </TextView>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -161,14 +163,13 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/white">
-            <ImageView
+            <ImageButton
+                android:id="@+id/imageButton6"
                 android:layout_width="1in"
                 android:layout_height="1in"
-                android:src="@drawable/mexico"
+                android:scaleType="fitStart"
                 android:backgroundTint="@color/white"
-                android:layout_margin="5dp"
-                android:elevation="3dp">
-            </ImageView>
+                android:src="@drawable/mexico" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

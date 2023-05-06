@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
+public class MainActivity extends AppCompatActivity{
     private EditText editTextEmailAddress, editTextPassword;// editTextPersonName;
     private final String valid_mail = "admin";
     private final String valid_password = "1";
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
   */
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       /*  editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
         editTextPassword = findViewById(R.id.editTextPassword);
@@ -94,13 +94,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         return true;
     }
 
-    @Override
-    public void entering(View view){
+
+    public void entering(View view) {
         Toast.makeText(MainActivity.this, "main menu clicked", Toast.LENGTH_SHORT).show();
         Intent intent_main = new Intent(this, MainActivity2.class);
         startActivity(intent_main);
     }
-
 
     //פונקציה שמגדירה את הקליקים
     //handle options menu click events
@@ -186,11 +185,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         AlertDialog alertDialog = dialog.create();
         alertDialog.show();
         //alertdialog - name of the object
-    }
-
-    @Override
-    public void onItemClick(int position) {
-
     }
 
     /*
